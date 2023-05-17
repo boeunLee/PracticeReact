@@ -1,0 +1,19 @@
+.newClass{
+    width: 100%;
+    height: 20px;
+    background: black;
+}
+
+.garyinfo{
+    border:1px solid black;
+}
+
+.red{
+    color:cyan;
+}
+.green{
+    color:yellow;
+}
+.blue{
+    color:greenyellow;
+}
