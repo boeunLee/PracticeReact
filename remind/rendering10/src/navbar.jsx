@@ -3,56 +3,36 @@ import Detail from "./stylePractice/detail";
 import Question from "./stylePractice/question";
 import Review from "./stylePractice/review";
 
-const ContentsContainer = ({ listName }) => {
-  if (listName === "detail") {
-    return <Detail />;
-  } else if (listName === "qa") {
-    return <Question />;
-  } else if (listName === "review") {
-    return <Review />;
+function ContentsContainer(props){
+  if(props.title==="detail"){
+    return <Detail/>;
   }
-};
+  else if(props.title==="qa"){
+    return <Question/>;
+  }
+  else if(props.title==="review"){
+    return <Review/>;
+  }
+}
 
-function NavBar() {
-  const [listName, setListName] = useState("detail");
+function NavBar(){
+  const [current, setCurrent] = useState("detail");
+
   const checkId = (e) => {
-    setListName(e.target.id);
-  };
+    // 클릭한 id를 의미
+    setCurrent(e.target.id);
+  }
 
-  return (
+  return(
     <>
-      <nav>
-        <ul>
-          <li
-            id="detail"
-            style={
-              listName === "detail" ? { color: "red" } : { color: "black" }
-            }
-            onClick={checkId}
-          >
-            상세정보
-          </li>
-          <li
-            id="qa"
-            onClick={checkId}
-            style={listName === "qa" ? { color: "red" } : { color: "black" }}
-          >
-            Q&A
-          </li>
-          <li
-            id="review"
-            onClick={checkId}
-            style={
-              listName === "review" ? { color: "red" } : { color: "black" }
-            }
-          >
-            Review
-          </li>
-        </ul>
-      </nav>
-      <ContentsContainer listName={listName} />
+    <ul>
+      <li id="detail" onClick={checkId} style = {current==="detail"?{color:"red"}:{color:"black"}}>상세정보</li>
+      <li id="qa" onClick={checkId} style = {current==="qa"?{color:"red"}:{color:"black"}}>Q&A</li>
+      <li id="review" onClick={checkId} style = {current==="review"?{color:"red"}:{color:"black"}}>Review</li>
+    </ul>
+    <ContentsContainer title={current}/>
     </>
-  );
+  )
 }
 
 export default NavBar;
